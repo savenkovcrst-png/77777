@@ -41,6 +41,7 @@ def render_tree(root_node):
 # -----------------------------
 # 4. Streamlit UI
 # -----------------------------
+st.set_page_config(page_title="Дерево решений бурения", layout="wide")
 st.title("Дерево решений по ликвидации аварий на бурении")
 
 # Загружаем базу знаний
@@ -50,7 +51,7 @@ knowledge = load_knowledge()
 types_of_incidents = [d["condition"] for d in knowledge]
 selected_incident = st.selectbox("Выберите тип аварии", types_of_incidents)
 
-# Строим дерево для выбранного типа
+# Строим дерево
 data = next(d for d in knowledge if d["condition"] == selected_incident)
 root = build_tree(data)
 st.subheader("Текстовая структура дерева:")
@@ -61,4 +62,4 @@ image_path = render_tree(root)
 if image_path and os.path.exists(image_path):
     st.image(Image.open(image_path), caption="Дерево решений")
 else:
-    st.warning("Дерево не удалось визуализировать")
+    st
