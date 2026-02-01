@@ -1,0 +1,4 @@
+streamlit
+anytree
+pillow
+graphviz
